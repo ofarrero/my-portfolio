@@ -5,7 +5,7 @@ html{
 }
 
 body{
-    color: #252627;
+    color: #4D5061;
     margin: 0;
     padding: 0;
     font-family: 'Open Sans', sans-serif;
@@ -40,6 +40,10 @@ h1, h2{
 
 /* Header
 -------------------*/
+header{
+    background: #7DAA92;
+    text-align: center;
+}
 
 /* About Me
 -------------------*/
@@ -49,6 +53,7 @@ h1, h2{
 
 /* Projects
 -------------------*/
+
 
 /* Photo Gallery
 -------------------*/
