@@ -31,6 +31,11 @@ h1, h2{
     font-family: 'Domine', serif;
 }
 
+#random-fact, header{
+    background: #7DAA92;
+    text-align: center;
+}
+
 .content-wrap{
     max-width: 800px;
     width: 85%;
@@ -40,19 +45,59 @@ h1, h2{
 
 /* Header
 -------------------*/
-header{
-    background: #7DAA92;
-    text-align: center;
-}
+
 
 /* About Me
 -------------------*/
+#about-me {
+    background: #F6F4F5;
+}
+
+#random-fact{
+    border-radius: 25px;
+    padding: 20px;
+    width: 200px;
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+#random-fact button {
+  transition-duration: 0.4s;
+  border-radius: 4px;
+  font-size: 15px;
+  padding: 12px;
+  background-color: #4D5061; 
+  color: white;
+}
+
+#random-fact button:hover {
+  background-color: white; 
+  color: #4D5061;
+}
+
 #fact-container {
   margin-top: 20px;
 }
 
+.headshot{
+    border-radius: 50%;
+    width: 25%;
+    height: 25%;
+    float: right;
+    margin: 10px;
+}
+
+
+  
+
+
 /* Projects
 -------------------*/
+#projects{
+    background: #EBEBEB;
+}
 
 
 /* Photo Gallery
