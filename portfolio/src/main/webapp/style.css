@@ -128,8 +128,30 @@ hr{
 /* Photo Gallery
 -------------------*/
 
-/* Social Media
--------------------*/
+/* Social Media/ Footer
+-------------------------*/
+footer{
+    background: #7DAA92;
+    text-align: center;
+}
+
+.contact-list{
+    list-style-type: none;
+    padding: 0;
+    display: inline-flex;
+}
+
+.contact-list a{
+    margin: .5em 2em;
+}
+
+footer .picBtn{
+    padding: 8px;
+}
+
+footer .picBtn:hover{
+    opacity: 80%;
+}
 
 
 
