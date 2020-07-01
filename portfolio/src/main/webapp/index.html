@@ -7,18 +7,121 @@
     <script src="script.js"></script>
   </head>
   <body>
-    <div id="content">
-      <h1>Róisín's Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>I am Róisín, I am a 2nd year computer engineering student. This summer I am a STEP
-          intern at Google working in the Display Ads Targeting team based in Dublin. I am excited
-          to complete my training and do my project!<p>
-      
-      <img src="images/profile.jpg" alt="Me receiving employability award"width="300" height="250">
-      
-      <p>Click here to get a random fact about me:</p>
-      <button onclick="addRandomFact()">Fact</button>
-      <div id="fact-container"></div>
-    </div>
+    <header>
+        <div>
+          <h1>Róisín's Internship Portfolio</h1>
+          <h2>STEP Intern</h2>
+        </div>
+    <header>
+    <main>
+         <!-- ***********************  ABOUT / PROFILE  *********************** -->
+      <section id="about-me">
+        <div class="content-wrap">
+            <h2>What makes me me?</h2>
+            <img src="images/headshot.jpg" alt="Headshot" class="headshot" width="150" height="150">
+            <p> 
+                My name is Róisín. I am a computer engineering student in Trinity College Dublin going
+                into third year. I choose to study engineering as I was unsure what area of STEM I wanted
+                to go into as I enjoyed multiple areas. The first two years of my degree were general, this 
+                enabled me to study many different areas. I got a great grounding in maths, chemistry and physics.
+                As an engineering student a lot of emphasis during my first two years were also put on design. 
+                We learnt about the universal principles of design and completed many design based projects. 
+            </p>
+            <p>
+               During the summer of my first year in college I got the opportunity to do an internship in Intel.
+               It was during this internship that I decided that I wanted to study compunter engineering as I 
+               really enjoyed the work that I was doing. I was introduced to the fundamentals of
+               object oriented programming and over the course of the internship I had the opportunity to implement 
+               what I had learnt in projects. My capstone project was working on an internal application for the 
+               creating and streamlining of qualification plans. My main role duting this project was to create an 
+               xml tag parser to sort user input and the creation of the output document.
+            </p>
+            <p>
+                I contibute the person not only to what I have done and what I'm interested in but also to the 
+                people in my life. If it wasn't for the influece of my parents I doubt I would be where I am today.
+                My father is one of my biggest role models. He is a Data Analyst with a love for technology. Looking up
+                to him as a child I wanted to do what he was doing and always wanted him to tell me about what he was 
+                doing. I think it is because of this that I became so interested in STEM. He encouraged me to take courses
+                in different STEM subjects and always told me I was capable. My mother was another huge influence in my life.
+                She is not working in a STEM field, she is a librarian. Having a mother that worked when I was younger was 
+                such a positive influence. I got to see a woman work hard and work her way up the command chain to where she is 
+                now. She taught me a lot about hard work and dedication but also about taking time for yourself and its importance.
+                Someone who had a great influenece on me that is not a member of my family is my mentor from my internship at 
+                Intel, Chris. Chris guided me through my first internship and he was incredible. He showed me that work isn't 
+                just about working it's also about the friendships you make and the positive environment you create. He taught
+                me how easy it is to encourage and build people up. It is these lessons from my internship that have resonated with
+                me the most.
+            </p>
+            <p>
+                My entire personality isn't computer engineering, I have many other interests. I really enjoy sport. I played centre
+                for my college netball team over the last year. I decided to try netball out as it was a fast paced tactical
+                game and I really enjoyed my time on the team but I think next year I might try out another sport. I also really enjoy
+                running and swimming so I am thinking about joining the triathalon team for the next academic year. Triathalon requires
+                dedication and hard work traits which I would love to improve upon. I also have a huge interest in music in particular
+                I love musicals. Seeing musicals on stage is really incredible, recently I went to London to see Hamilton in the West End 
+                It was amazing and I would definitely reccommend going to see it. I also really enjoy concerts, I was meant to see the KIllers 
+                but due to Covid-19 the concert was postponed to next summer so I am going to have to wait another year to see them :(
+            </p>
+
+            <p>Click here to get a random fact about me:</p>
+            <button onclick="addRandomFact()">Fact</button>
+            <div id="fact-container"></div>
+        </div>
+      </section>
+
+         <!-- ***********************  PROJECTS  *********************** -->
+      <section id="projects">
+        <div class="content-wrap">
+            <h2>Projects</h2>
+            
+            <section class="project-item">
+                <img src="images/buggy.jpg" alt="Front view of vehicle"  width="250" height="188">
+                <h3>Autonomous Vehicle Project</h3>
+                <p>
+                    This project involved the building and programming of an autonomous vehicle. As a group we designed
+                    a H-Bridge control board to give power to the motors. Other members of my team soldered this board.
+                    My role during the project was the design and implementation of the vehicle controls using an Arduino 
+                    board. The vehicle followed a line track, to do this I used input from infrared sensors on the front of the 
+                    vehicle to ensure the wheels turned to stay on the track. I added the capability to break in front of 
+                    objects to the vehicle using continuos input from a ultrasonic sensor on the front of the vehicle. I also 
+                    ensured that the vehicle could be controled wirelessly using a XBees,this allowed us to start, stop and get 
+                    real time information from the vehicle. 
+                </p>
+            </section>
+
+            <section class="project-item">
+                <img src="images/shelter.png" alt="Team with the shelter design" width="188" height="250">
+                <h3>Emergency Shelter</h3>
+                <p>
+                    In this project we were tasked at making an emergency shelter. The emergency shelter had to be usable by 
+                    people over the age of 60 with various disabilities including poor eye sight and bad dexterity. Another 
+                    stipulation of the project was that it had to be made out of mostly recycled materials. The aim of this 
+                    project was to teach us about the design process and learning how to design inclusively. I kept a design 
+                    journal for this project, it contained every design we had considered, discussions about materials and 
+                    manufacturing techniques. During this project we also created several small prototypes so that we could 
+                    see if our ideas worked and what techniques were best. In the end we had designed and built a foldable pop 
+                    up shelter with easy access that had a water collection system that could hold up to 2L of water and a frame 
+                    that could withstand over 1kg being applied to it.
+                </p>
+            </section>
+
+            <section class="project-item">
+                <img src="images/water-filter.png" alt="Water filter system" width="270" height="195">
+                <h3>Hands Free Water Filtration System</h3>
+                <p>
+                    This project was conducted for Engineers without Boarders. We were tasked with coming up with a solution for a 
+                    water issue in Zambia. As a team we decided that our project would focus on water filtration in the slums of Lusaka.
+                    Lusaka is the capital of Zambia and within the slums nearly all avaiable water has been contaminated due to the use
+                    of pit latrines. To counteract this we designed a communal water filtration system. The system used centripital force
+                    to force larger debris and dirt to the outside of the device and then used a microfilter to filter out harmful microoganisms.
+                    This method allowed the water to be filtered quicker as it was not getting blocked by debris and allowed the filter to last 
+                    longer for the same reasons. Conceptually this device could produce 220L of water a day and last up to 5 years without any 
+                    parts having to be replaced.
+                </p>
+            </section>
+
+        </div>
+      </section>
+    </main>
   </body>
 </html>
