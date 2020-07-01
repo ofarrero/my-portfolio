@@ -50,6 +50,18 @@ h1, h2{
 
 /* Header
 -------------------*/
+header{
+    padding-top: 4%;
+}
+
+.skew-c{
+  width:100%;
+  height:100px;
+  position:absolute;
+  left:0;
+  background: linear-gradient(to left bottom, #7DAA92 49%, #F6F4F5 50%);
+  
+}
 
 
 /* About Me
@@ -152,6 +164,7 @@ hr{
 footer{
     background: #7DAA92;
     text-align: center;
+    
 }
 
 .contact-list{
@@ -162,6 +175,15 @@ footer{
 
 .contact-list a{
     margin: .5em 2em;
+}
+
+.skew-cc{
+  width:100%;
+  height:100px;
+  position:absolute;
+  left:0px;
+  background: linear-gradient(to right bottom, #F6F4F5 49%, #7DAA92 50%);
+  
 }
 
 footer .picBtn{
