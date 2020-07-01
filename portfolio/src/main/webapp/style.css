@@ -100,8 +100,24 @@ h1, h2{
     background: #EBEBEB;
 }
 
-hr . {
+hr{
     border-top: 6px dotted #7DAA92;
+}
+
+.project-item{
+    display: flex;
+   
+}
+
+.img-box{
+    width: 270px; 
+    text-align: center; 
+    padding-top: 48px;
+}
+
+.content-box{
+    padding-left: 15px;
+    max-width: 535px;
 }
 .project-item h3{
     margin-top: 0;
