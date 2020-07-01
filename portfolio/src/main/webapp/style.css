@@ -43,6 +43,7 @@ h1, h2{
     padding: 60px 0;
 }
 
+
 /* Header
 -------------------*/
 
@@ -98,6 +99,14 @@ h1, h2{
 #projects{
     background: #EBEBEB;
 }
+
+hr . {
+    border-top: 6px dotted #7DAA92;
+}
+.project-item h3{
+    margin-top: 0;
+}
+
 
 
 /* Photo Gallery
