@@ -31,6 +31,10 @@ h1, h2{
     font-family: 'Domine', serif;
 }
 
+#about-me, #photo-gallery{
+    background: #F6F4F5;
+}
+
 #random-fact, header{
     background: #7DAA92;
     text-align: center;
@@ -50,9 +54,7 @@ h1, h2{
 
 /* About Me
 -------------------*/
-#about-me {
-    background: #F6F4F5;
-}
+
 
 #random-fact{
     border-radius: 25px;
@@ -127,6 +129,23 @@ hr{
 
 /* Photo Gallery
 -------------------*/
+.banner-container{
+    width: 60%;
+    margin: auto;
+
+}
+
+.rotating-banner{
+    display: flex;
+    width: 375px;
+    height: 500px;
+    overflow: hidden;
+}
+
+.rotating-banner img{
+   height: 500px;
+   width: 375px;
+}
 
 /* Social Media/ Footer
 -------------------------*/
