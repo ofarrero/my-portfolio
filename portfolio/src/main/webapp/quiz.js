@@ -121,7 +121,6 @@ function buildQuiz(){
         (currentQuestion, questionNumber)=>{
         //store all possible answers
         const answers = [];
-        console.log(output);
 
         for(letter in currentQuestion.answers){
             // make radio button for each question
@@ -135,8 +134,10 @@ function buildQuiz(){
         }
         //add question html to output array
         output.push(
-            `<div class="question"> ${currentQuestion.question} </div>
-            <div class="answers"> ${answers.join('')} </div>`
+            `<div class="question-set">
+              <div class="question"> ${currentQuestion.question} </div>
+              <div class="answers"> ${answers.join('')} </div>
+            </div>`
         );
     
      }
@@ -163,12 +164,12 @@ function showResults(){
         numCorrect++;
 
         // colour the answers green
-        answerContainers[questionNumber].style.color = 'lightgreen';
+        answerContainers[questionNumber].style.color = '#4d9900';
         }
         // if answer is wrong or blank
         else{
         // colour the answers red
-        answerContainers[questionNumber].style.color = 'red';
+        answerContainers[questionNumber].style.color = '#b30000';
     }
   });
 
