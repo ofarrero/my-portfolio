@@ -142,19 +142,53 @@
      <section id="photo-gallery">
          <div class="content-wrap">
           <h2>Photo Gallery<h2>
-          <div class="banner-container">
-             <div class="rotating-banner">
-                 <img src="images/cuddling-dogs.jpg" alt="My dogs cuddling" width="150" height="200">
-                 <img src="images/ginny-cone.jpg" alt="Ginny wearing a cone" width="150" height="200">
-                 <img src="images/ginny-model.jpg" alt="Ginny lying in the sun" width="150" height="200">
-                 <img src="images/ginny-teddy.jpg" alt="Ginny with her teddy" width="150" height="200">
-                 <img src="images/sleeping-dogs.jpg" alt="My dogs sleeping on a couch" width="150" height="200">
-             </div>
-          </div>
-          <button id="nextBtn">Next</button>
-          <button id="prevBtn">Prev</button>
+          
+         <div class="gallery-container">
+
+         <div class="myPhotos fade">
+            <img src="images/ginny-cone.jpg" >
+            <div class="text">Ginny wearing a cone</div>
          </div>
+
+         <div class="myPhotos fade">
+            <img src="images/ginny-model.jpg" >
+            <div class="text">Ginny lying in the sun</div>
+         </div>
+
+         <div class="myPhotos fade">
+            <img src="images/ginny-teddy.jpg" >
+            <div class="text">Ginny with her teddy</div>
+         </div>
+
+         <div class="myPhotos fade">
+            <img src="images/sleeping-dogs.jpg" >
+            <div class="text">My dogs sleeping on a couch</div>
+         </div>
+
+         <div class="myPhotos fade">
+            <img src="images/cuddling-dogs.jpg" >
+            <div class="text">My dogs cuddling</div>
+         </div>
+
+         
+         <a class="prev" onclick="plusSlides(-1)"><img src="images/back.png"> </a>
+         <a class="next" onclick="plusSlides(1)"><img src="images/next.png" ></a>
+         </div>
+         <br>
+
+        <!-- position marker -->
+         <div style="text-align:center">
+           <span class="marker" onclick="currentSlide(1)"></span>
+           <span class="marker" onclick="currentSlide(2)"></span>
+           <span class="marker" onclick="currentSlide(3)"></span>
+           <span class="marker" onclick="currentSlide(4)"></span>
+           <span class="marker" onclick="currentSlide(5)"></span>
+         </div>
+
+
+        </div>
      </section>
+     
 
         <!-- ***************** SOCIAL MEDIA  ***************** -->
      <div class="skew-cc"></div>
@@ -175,9 +209,10 @@
           </ul>
         </div>
      </footer>
-        
+     <script src="picture-banner.js"></script>
 
 
     </main>
   </body>
+ 
 </html>

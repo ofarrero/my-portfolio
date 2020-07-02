@@ -141,23 +141,96 @@ hr{
 
 /* Photo Gallery
 -------------------*/
-.banner-container{
-    width: 60%;
-    margin: auto;
 
+.gallery-container {
+  width: 375px;
+  height: 500px;
+  position: relative;
+  margin: auto;
 }
 
-.rotating-banner{
-    display: flex;
-    width: 375px;
-    height: 500px;
-    overflow: hidden;
+.myPhotos {
+  display: none;
 }
 
-.rotating-banner img{
-   height: 500px;
-   width: 375px;
+.myPhotos img{
+  width: 375px;
+  height: 500px;
 }
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  padding-top: 10px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  text-align: center;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev img, .next img{
+    height: 30px;
+    width: 30px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(235, 235, 235, 0.6);
+}
+
+
+.text {
+  color: #717171;
+  background-color: #F6F4F5;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 0;
+  width: 375px;
+  text-align: center;
+}
+
+
+.marker {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #7DAA92;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .marker:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
 
 /* Social Media/ Footer
 -------------------------*/
