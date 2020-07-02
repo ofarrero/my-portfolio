@@ -31,7 +31,7 @@ h1, h2{
     font-family: 'Domine', serif;
 }
 
-#about-me, #photo-gallery{
+#about-me, #photo-gallery, #quiz-section{
     background: #F6F4F5;
 }
 
@@ -292,7 +292,15 @@ footer .picBtn:hover{
     opacity: 80%;
 }
 
-
-
+/* Quiz
+-------------------------*/
+#quiz{
+    height: 100%;
+    width: auto;
+    overflow: scroll;
+    text-align: center;
+    padding-top: 10%;
+    margin: auto;
+}
 
 
