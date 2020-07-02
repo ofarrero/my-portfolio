@@ -63,6 +63,31 @@ header{
   
 }
 
+.navtop{
+    background-color: #4D5061;
+    overflow: hidden;
+    margin-top: -4%;
+}
+
+.navtop a{
+    float: left;
+    color: #EBEBEB;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navtop a:hover{
+    background-color: #EBEBEB;
+    color: #4D5061;
+}
+
+.navtop a.active{
+    background-color: #EBEBEB;
+    color: #4D5061;
+}
+
 
 /* About Me
 -------------------*/
