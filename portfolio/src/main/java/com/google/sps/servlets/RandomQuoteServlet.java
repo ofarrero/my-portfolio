@@ -15,8 +15,6 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
-import com.google.sps.servlets.DataServlet;
-import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
@@ -25,35 +23,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
-public class DataServlet extends HttpServlet {
+@WebServlet("/random-quote")
+public class RandomQuoteServlet extends HttpServlet {
+  private List<String> quotes;
 
-  private List<String> messages;
-
+  @Override
   public void init() {
-    messages = new ArrayList<>();
-    messages.add("I was taught the way of progress is neither swift nor easy. - Marie Curie");
-    messages.add(
+    quotes = new ArrayList<>();
+    quotes.add("I was taught the way of progress is neither swift nor easy. - Marie Curie");
+    quotes.add(
         "I'd like to hear less talk about men and women and more talk about citizens."
         + " - Marjory Stoneman Douglas");
-    messages.add(
+    quotes.add(
         "There is no joy more intense than that of coming upon a fact that cannot "
         + "be understood in terms of currently accepted ideas. - Cecilia Payne-Gaposchkin");
-
+    quotes.add("When you love science all you really want to do is keep working. - Maria Goeppert-Mayer");
+    quotes.add("People are allergic to change you have to get out and sell the idea - Grace Hopper");
+    quotes.add("Above all don't fear difficult moments. The best comes from them. - Rita Levi-Montalcini");
+    quotes.add(
+        "[My Father] made me understand that I must make my own decisions, mold my own character, "
+            + "think my own thoughts.  - Hedy Lamar");
+    quotes.add(
+        "We must believe in ourselves or no one else will believe in us; We must match our aspirations "
+            + "with the competence, courage and determination to succeed. - Rosalyn Yalow");
+    quotes.add("Science and everyday life cannot and should not be seperated. - Rosalind Franklin");
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = convertToJson(messages);
-    response.setContentType("application/json;");
-    response.getWriter().println(json);
-  }
+    String quote = quotes.get((int) (Math.random() * quotes.size()));
 
-
-   private String convertToJson(List messages) {
-    Gson gson = new Gson();
-    String json = gson.toJson(messages);
-    return json;
+    response.setContentType("text/html;");
+    response.getWriter().println(quote);
   }
 
 }
