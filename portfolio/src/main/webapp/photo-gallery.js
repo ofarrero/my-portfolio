@@ -17,30 +17,25 @@ let slideIndex = 1;
 showSlides(slideIndex);
 
 // Next/previous controls called in html onclick
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+function plusSlides(changeBy) {
+  showSlides(slideIndex += changeBy);
 }
 
-function showSlides(n) {
-  let i;
+function showSlides(currentSlide) {
   let slides = document.getElementsByClassName("myPhotos");
   let markers = document.getElementsByClassName("marker");
 
   //go to first picture at end of slide deck
-  if (n > slides.length) {slideIndex = 1}
+  if (currentSlide > slides.length) {slideIndex = 1}
 
   //got to last picture from the start of deck
-  if (n < 1) {slideIndex = slides.length}
+  if (currentSlide < 1) {slideIndex = slides.length}
 
   //ensure no pictures are displayed
-  for (i = 0; i < slides.length; i++) {
-      slides[i].style.display = "none";
-  }
+  Object.keys(slides).forEach((item) => slides[item] = slides[item].style.display = "none");
 
   //ensure no markers are active
-  for (i = 0; i < markers.length; i++) {
-      markers[i].className = markers[i].className.replace(" active", "");
-  }
+  Object.keys(markers).forEach((item) => markers[item].className = markers[item].className.replace(" active", ""));
 
   // make correct picture and marker active (take away one as slideIndex starts at 1)
   slides[slideIndex-1].style.display = "block";
