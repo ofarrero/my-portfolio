@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DataServlet extends HttpServlet {
   private List<String> messages;
 
+ @Override 
   public void init() {
     messages = new ArrayList<>();
     messages.add("I was taught the way of progress is neither swift nor easy. - Marie Curie");
@@ -47,6 +48,8 @@ public class DataServlet extends HttpServlet {
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
+
+
 
 
    private String convertToJson(List messages) {
