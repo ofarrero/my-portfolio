@@ -36,9 +36,9 @@ public class DataServlet extends HttpServlet {
 
   //A class that holds comment information
   public class Comments{
-      private String username;
-      private String email;
-      private String comment;
+      final String username;
+      final String email;
+      final String comment;
 
       public Comments(String username, String email, String comment){
           this.username = username;
