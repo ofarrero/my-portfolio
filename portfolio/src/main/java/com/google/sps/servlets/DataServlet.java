@@ -36,9 +36,9 @@ public class DataServlet extends HttpServlet {
 
   //A class that holds comment information
   public class Comments{
-      String username;
-      String email;
-      String comment;
+      private String username;
+      private String email;
+      private String comment;
 
       public Comments(String username, String email, String comment){
           this.username = username;
@@ -104,6 +104,7 @@ public class DataServlet extends HttpServlet {
     // Respond with the result.
     response.setContentType("application/json;");
     response.getWriter().println(json);
+    response.sendRedirect("/comments.html");
   }
 
   /**
