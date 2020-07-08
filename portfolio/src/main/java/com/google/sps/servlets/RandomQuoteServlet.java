@@ -22,10 +22,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that returns a random quote*/
 @WebServlet("/random-quote")
 public class RandomQuoteServlet extends HttpServlet {
+  //List of quotes
   private List<String> quotes;
+
+  /**
+    * Populates array list with the quotes
+    */
 
   @Override
   public void init() {
@@ -48,6 +53,10 @@ public class RandomQuoteServlet extends HttpServlet {
             + "with the competence, courage and determination to succeed. - Rosalyn Yalow");
     quotes.add("Science and everyday life cannot and should not be seperated. - Rosalind Franklin");
   }
+
+  /**
+    * Gets a random quote to be returned as a servlet response
+    */
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

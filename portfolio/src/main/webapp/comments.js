@@ -13,25 +13,25 @@
 // limitations under the License.
 
 /**
- * Fetches stats from the servers and adds them to the DOM.
+ * Fetches comments from the servers and adds them to the DOM.
  */
-function getMessages() {
-    fetch('/data').then(response => response.json()).then((messages) => {
+function getComments() {
+  fetch('/data').then(response => response.json()).then((comments) => {
 
-    const messageListElement = document.getElementById('message-container');
-    messageListElement.innerHTML = '';
-    messageListElement.appendChild(
-        createListElement( messages[0]));
-    messageListElement.appendChild(
-        createListElement( messages[1]));
-    messageListElement.appendChild(
-        createListElement( messages[2]));
+    const commentListElement = document.getElementById('comment-container');
+    commentListElement.innerHTML = '';
+    // Create an array to store comment html
+    const commentOutput = [];
+
+    comments.forEach((/**item */commentInfo)=>{
+      //Add formatting html for each comment to commentOutput array
+      commentOutput.push(
+        `<div class="comment">
+          <h3 class="username"> ${commentInfo.username} " says: "</h3>
+          <p class="commentContent"> ${commentInfo.comment} </p>
+        </div>`
+      );
+    });
+    commentListElement.innerHTML = commentOutput.join('');
   });
-}
-
-/** Creates an <li> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
 }

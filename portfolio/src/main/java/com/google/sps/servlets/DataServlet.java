@@ -30,10 +30,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that stores and returns comments */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  //A class that holds comment information
   public class Comments{
       String username;
       String email;
@@ -45,6 +46,11 @@ public class DataServlet extends HttpServlet {
           this.comment = comment;
       }
   }
+
+  /**
+    * Gets all comment data stored and adds it to an array list to be 
+    * returned as a servlet response
+    */
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -65,10 +71,14 @@ public class DataServlet extends HttpServlet {
     }
 
     Gson gson = new Gson();
-
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(commentList));
   }
+
+   /**
+    * Gets new comment data and creates a new comment object from it to be
+    * returned as a servlet response
+    */
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -107,6 +117,12 @@ public class DataServlet extends HttpServlet {
     }
     return value;
   }
+
+  /**
+   * Converts Comment object to json string
+   * @param {!Comment} obj
+   * @return {String} 
+   */
 
    private String convertToJson(Comments comments) {
     Gson gson = new Gson();
