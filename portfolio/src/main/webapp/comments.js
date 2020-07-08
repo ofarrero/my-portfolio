@@ -27,7 +27,7 @@ function getComments() {
       //Add formatting html for each comment to commentOutput array
       commentOutput.push(
         `<div class="comment">
-          <h3 class="username"> ${commentInfo.username} " says: "</h3>
+          <h3 class="username"> ${commentInfo.username} says: </h3>
           <p class="commentContent"> ${commentInfo.comment} </p>
         </div>`
       );
