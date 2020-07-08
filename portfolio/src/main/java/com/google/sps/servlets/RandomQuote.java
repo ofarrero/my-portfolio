@@ -16,8 +16,6 @@
  * Fetches a random quote from the server and adds it to the DOM.
  */
 function getRandomQuote() {
-  console.log('Fetching a random quote.');
-
   const responsePromise = fetch('/random-quote');
 
   // When the request is complete, pass the response into handleResponse().
@@ -29,10 +27,7 @@ function getRandomQuote() {
  * addQuoteToDom().
  */
 function handleResponse(response) {
-  console.log('Handling the response.');
-
   const textPromise = response.text();
-
   // When the response is converted to text, pass the result into the
   // addQuoteToDom() function.
   textPromise.then(addQuoteToDom);
