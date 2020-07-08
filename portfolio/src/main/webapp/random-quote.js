@@ -16,7 +16,6 @@
  * Fetches a random quote from the server and adds it to the DOM.
  */
 function getRandomQuote() {
-  console.log('Fetching a random quote.');
 
   // The fetch() function returns a Promise because the request is asynchronous.
   const responsePromise = fetch('/random-quote');
@@ -30,7 +29,6 @@ function getRandomQuote() {
  * addQuoteToDom().
  */
 function handleResponse(response) {
-  console.log('Handling the response.');
 
   // response.text() returns a Promise, because the response is a stream of
   // content and not a simple variable.
@@ -43,7 +41,6 @@ function handleResponse(response) {
 
 /** Adds a random quote to the DOM. */
 function addQuoteToDom(quote) {
-  console.log('Adding quote to dom: ' + quote);
 
   const quoteContainer = document.getElementById('quote-container');
   quoteContainer.innerText = quote;
