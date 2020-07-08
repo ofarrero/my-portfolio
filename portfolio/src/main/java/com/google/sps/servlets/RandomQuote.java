@@ -17,7 +17,6 @@
  */
 function getRandomQuote() {
   const responsePromise = fetch('/random-quote');
-
   // When the request is complete, pass the response into handleResponse().
   responsePromise.then(handleResponse);
 }
@@ -35,8 +34,6 @@ function handleResponse(response) {
 
 /** Adds a random quote to the DOM. */
 function addQuoteToDom(quote) {
-  console.log('Adding quote to dom: ' + quote);
-
   const quoteContainer = document.getElementById('quote-container');
   quoteContainer.innerText = quote;
 }
