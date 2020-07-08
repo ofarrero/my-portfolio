@@ -31,6 +31,10 @@ h1, h2{
     font-family: 'Domine', serif;
 }
 
+#about-me, #photo-gallery{
+    background: #F6F4F5;
+}
+
 #random-fact, header{
     background: #7DAA92;
     text-align: center;
@@ -46,13 +50,48 @@ h1, h2{
 
 /* Header
 -------------------*/
+header{
+    padding-top: 4%;
+}
+
+.skew-c{
+  width:100%;
+  height:100px;
+  position:absolute;
+  left:0;
+  background: linear-gradient(to left bottom, #7DAA92 49%, #F6F4F5 50%);
+  
+}
+
+.navtop{
+    background-color: #4D5061;
+    overflow: hidden;
+    margin-top: -4%;
+}
+
+.navtop a{
+    float: left;
+    color: #EBEBEB;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.navtop a:hover{
+    background-color: #EBEBEB;
+    color: #4D5061;
+}
+
+.navtop a.active{
+    background-color: #EBEBEB;
+    color: #4D5061;
+}
 
 
 /* About Me
 -------------------*/
-#about-me {
-    background: #F6F4F5;
-}
+
 
 #random-fact{
     border-radius: 25px;
@@ -128,8 +167,130 @@ hr{
 /* Photo Gallery
 -------------------*/
 
-/* Social Media
--------------------*/
+.gallery-container {
+  width: 375px;
+  height: 500px;
+  position: relative;
+  margin: auto;
+}
+
+.myPhotos {
+  display: none;
+}
+
+.myPhotos img{
+  width: 375px;
+  height: 500px;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  padding-top: 10px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  text-align: center;
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev img, .next img{
+    height: 30px;
+    width: 30px;
+}
+
+.prev:hover, .next:hover {
+  background-color: rgba(235, 235, 235, 0.6);
+}
+
+
+.text {
+  color: #717171;
+  background-color: #F6F4F5;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 0;
+  width: 375px;
+  text-align: center;
+}
+
+
+.marker {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #7DAA92;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .marker:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+
+/* Social Media/ Footer
+-------------------------*/
+footer{
+    background: #7DAA92;
+    text-align: center;
+    
+}
+
+.contact-list{
+    list-style-type: none;
+    padding: 0;
+    display: inline-flex;
+}
+
+.contact-list a{
+    margin: .5em 2em;
+}
+
+.skew-cc{
+  width:100%;
+  height:100px;
+  position:absolute;
+  left:0px;
+  background: linear-gradient(to right bottom, #F6F4F5 49%, #7DAA92 50%);
+  
+}
+
+footer .picBtn{
+    padding: 8px;
+}
+
+footer .picBtn:hover{
+    opacity: 80%;
+}
 
 
 
