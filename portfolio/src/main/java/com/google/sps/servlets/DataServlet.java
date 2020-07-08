@@ -27,34 +27,50 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  private List<String> messages;
 
- @Override 
-  public void init() {
-    messages = new ArrayList<>();
-    messages.add("I was taught the way of progress is neither swift nor easy. - Marie Curie");
-    messages.add(
-        "I'd like to hear less talk about men and women and more talk about citizens."
-        + " - Marjory Stoneman Douglas");
-    messages.add(
-        "There is no joy more intense than that of coming upon a fact that cannot "
-        + "be understood in terms of currently accepted ideas. - Cecilia Payne-Gaposchkin");
+  public class Comments{
+      String username;
+      String email;
+      String comment;
 
+      public Comments(String username, String email, String comment){
+          this.username = username;
+          this.email = email;
+          this.comment = comment;
+      }
   }
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String json = convertToJson(messages);
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String username = getParameter(request, "username", "");
+    String email = getParameter(request, "email", "");
+    String comment = getParameter(request, "comment", "");
+
+    // Creat new comment object
+    Comments newComment = new Comments(username, email, comment);
+    String json = convertToJson(newComment);
+
+    // Respond with the result.
     response.setContentType("application/json;");
     response.getWriter().println(json);
   }
 
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
 
-
-
-   private String convertToJson(List messages) {
+   private String convertToJson(Comments comments) {
     Gson gson = new Gson();
-    String json = gson.toJson(messages);
+    String json = gson.toJson(comments);
     return json;
   }
 
