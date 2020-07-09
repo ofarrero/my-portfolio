@@ -67,7 +67,7 @@ public class DataServlet extends HttpServlet {
       String username = (String) entity.getProperty("username");
       String email = (String) entity.getProperty("email");
       String comment = (String) entity.getProperty("comment");
-      Long timestamp = (long) entity.getProperty("timestamp");
+      Long timestamp = (Long) entity.getProperty("timestamp");
 
       Comments oldComment = new Comments(username, email, comment, timestamp);
       commentList.add(oldComment);
@@ -89,7 +89,7 @@ public class DataServlet extends HttpServlet {
     String username = getParameter(request, "username", "");
     String email = getParameter(request, "email", "");
     String comment = getParameter(request, "comment", "");
-    long timestamp = System.currentTimeMillis();
+    Long timestamp = System.currentTimeMillis();
 
     // Add entity
     Entity commentEntity = new Entity("Comment");
