@@ -15,6 +15,14 @@
 package com.google.sps.servlets;
 
 import java.io.IOException;
+import com.google.sps.servlets.DataServlet;
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +30,110 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+/** Servlet that stores and returns comments */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-  //Empty until commemt section made
+
+  //A class that holds comment information
+  public class Comments{
+      final String username;
+      final String email;
+      final String comment;
+      final long timestamp;
+
+      public Comments(String username, String email, String comment, long timestamp){
+          this.username = username;
+          this.email = email;
+          this.comment = comment;
+          this.timestamp = timestamp;
+      }
+  }
+
+  /**
+    * Gets all comment data stored and adds it to an array list to be 
+    * returned as a servlet response
+    */
+
+  @Override
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+
+    List<Comments> commentList= new ArrayList<>();
+    for (Entity entity : results.asIterable()) {
+      //long id = entity.getKey().getId();
+      String username = (String) entity.getProperty("username");
+      String email = (String) entity.getProperty("email");
+      String comment = (String) entity.getProperty("comment");
+      Long timestamp = (Long) entity.getProperty("timestamp");
+
+      Comments oldComment = new Comments(username, email, comment, timestamp);
+      commentList.add(oldComment);
+    }
+
+    Gson gson = new Gson();
+    response.setContentType("application/json;");
+    response.getWriter().println(gson.toJson(commentList));
+  }
+
+   /**
+    * Gets new comment data and creates a new comment object from it to be
+    * returned as a servlet response
+    */
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String username = getParameter(request, "username", "");
+    String email = getParameter(request, "email", "");
+    String comment = getParameter(request, "comment", "");
+    Long timestamp = System.currentTimeMillis();
+
+    // Add entity
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("username", username);
+    commentEntity.setProperty("email", email);
+    commentEntity.setProperty("comment", comment);
+    commentEntity.setProperty("timestamp", timestamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
+
+
+    // Create new comment object
+    Comments newComment = new Comments(username, email, comment, timestamp);
+    String json = convertToJson(newComment);
+
+    // Respond with the result.
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+    response.sendRedirect("/comments.html");
+  }
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
+
+  /**
+   * Converts Comment object to json string
+   * @param {!Comment} obj
+   * @return {String} 
+   */
+
+   private String convertToJson(Comments comments) {
+    Gson gson = new Gson();
+    String json = gson.toJson(comments);
+    return json;
+  }
+
 }

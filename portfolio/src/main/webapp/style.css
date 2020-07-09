@@ -35,7 +35,7 @@ h1, h2, .question{
     font-family: 'Domine', serif;
 }
 
-#about-me, #photo-gallery, #quiz-section, #quote{
+#about-me, #photo-gallery, #quiz-section, #quote, #comments{
     background: #F6F4F5;
 }
 
@@ -342,3 +342,15 @@ footer .picBtn:hover{
   margin-top: 20px;
 }
 
+/* Comments
+-------------------*/
+.comment{
+    border: 2px solid #717171;
+    border-radius: 5px;
+    background-color: #EBEBEB;
+    margin-bottom: 4px;
+}
+
+.commentContent, .username{
+    margin-left: 5px;
+}
