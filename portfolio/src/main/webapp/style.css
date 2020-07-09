@@ -13,6 +13,10 @@ body{
     line-height: 1.5;
 }
 
+main{
+    padding-top: 40px;
+}
+
 h1{
     font-size: 3.2em;
 }
@@ -31,7 +35,7 @@ h1, h2, .question{
     font-family: 'Domine', serif;
 }
 
-#about-me, #photo-gallery, #quiz-section{
+#about-me, #photo-gallery, #quiz-section, #quote{
     background: #F6F4F5;
 }
 
@@ -332,6 +336,9 @@ footer .picBtn:hover{
     font-weight: bold;
 }
 
-
-
+/* Quotes
+-------------------------*/
+#quote-container {
+  margin-top: 20px;
+}
 
