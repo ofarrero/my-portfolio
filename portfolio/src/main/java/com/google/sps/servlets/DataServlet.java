@@ -39,11 +39,13 @@ public class DataServlet extends HttpServlet {
       final String username;
       final String email;
       final String comment;
+      final long timestamp;
 
-      public Comments(String username, String email, String comment){
+      public Comments(String username, String email, String comment, long timestamp){
           this.username = username;
           this.email = email;
           this.comment = comment;
+          this.timestamp = timestamp;
       }
   }
 
@@ -54,7 +56,7 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Comment");
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
@@ -65,8 +67,9 @@ public class DataServlet extends HttpServlet {
       String username = (String) entity.getProperty("username");
       String email = (String) entity.getProperty("email");
       String comment = (String) entity.getProperty("comment");
+      Long timestamp = (long) entity.getProperty("timestamp");
 
-      Comments oldComment = new Comments(username, email, comment);
+      Comments oldComment = new Comments(username, email, comment, timestamp);
       commentList.add(oldComment);
     }
 
@@ -86,19 +89,21 @@ public class DataServlet extends HttpServlet {
     String username = getParameter(request, "username", "");
     String email = getParameter(request, "email", "");
     String comment = getParameter(request, "comment", "");
+    long timestamp = System.currentTimeMillis();
 
     // Add entity
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("username", username);
     commentEntity.setProperty("email", email);
     commentEntity.setProperty("comment", comment);
+    commentEntity.setProperty("timestamp", timestamp);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
 
     // Create new comment object
-    Comments newComment = new Comments(username, email, comment);
+    Comments newComment = new Comments(username, email, comment, timestamp);
     String json = convertToJson(newComment);
 
     // Respond with the result.
