@@ -30,7 +30,6 @@ function getRandomQuote() {
 function handleResponse(response) {
 
   const textPromise = response.text();
-
   // When the response is converted to text, pass the result into the
   // addQuoteToDom() function.
   textPromise.then(addQuoteToDom);
@@ -38,7 +37,6 @@ function handleResponse(response) {
 
 /** Adds a random quote to the DOM. */
 function addQuoteToDom(quote) {
-
   const quoteContainer = document.getElementById('quote-container');
   quoteContainer.innerText = quote;
 }

@@ -25,6 +25,7 @@ import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date ;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +34,7 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that stores and returns comments */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+    
 
   //A class that holds comment information
   public class Comments{
@@ -67,7 +69,7 @@ public class DataServlet extends HttpServlet {
       String username = (String) entity.getProperty("username");
       String email = (String) entity.getProperty("email");
       String comment = (String) entity.getProperty("comment");
-      Long timestamp = (Long) entity.getProperty("timestamp");
+      long timestamp = (long) entity.getProperty("timestamp");
 
       Comments oldComment = new Comments(username, email, comment, timestamp);
       commentList.add(oldComment);
@@ -89,7 +91,8 @@ public class DataServlet extends HttpServlet {
     String username = getParameter(request, "username", "");
     String email = getParameter(request, "email", "");
     String comment = getParameter(request, "comment", "");
-    Long timestamp = System.currentTimeMillis();
+    Date currDate = new Date();
+    long timestamp = currDate.getTime();
 
     // Add entity
     Entity commentEntity = new Entity("Comment");
@@ -100,7 +103,6 @@ public class DataServlet extends HttpServlet {
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
-
 
     // Create new comment object
     Comments newComment = new Comments(username, email, comment, timestamp);
@@ -137,3 +139,4 @@ public class DataServlet extends HttpServlet {
   }
 
 }
+
