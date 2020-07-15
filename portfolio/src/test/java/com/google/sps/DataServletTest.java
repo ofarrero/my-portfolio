@@ -51,6 +51,30 @@ public final class DataServletTest{
   public void tearDown() {
     helper.tearDown();
   }
+
+  @Test
+  public void testDoGet() throws IOException {
+    //Build mock servlet request, response & date
+    HttpServletRequest request = mock(HttpServletRequest.class);       
+    HttpServletResponse response = mock(HttpServletResponse.class);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+ 
+    // Create a new comment entity for testing 
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("username", "me");
+    commentEntity.setProperty("email", "name@email.com");
+    commentEntity.setProperty("comment", "content");
+    commentEntity.setProperty("timestamp", 30L);
+    
+    datastore.put(commentEntity);
+
+    StringWriter stringWriter = new StringWriter();
+    PrintWriter writer = new PrintWriter(stringWriter);
+    when(response.getWriter()).thenReturn(writer);
+    new DataServlet().doGet(request, response);
+    String result = stringWriter.toString();
+    Assert.assertTrue(result.contains("{\"username\":\"me\",\"email\":\"name@email.com\",\"comment\":\"content\""));
+  }
   
   @Test
   public void testDoPost() throws Exception {
@@ -59,19 +83,12 @@ public final class DataServletTest{
     HttpServletResponse response = mock(HttpServletResponse.class);  
 
     final Date mockDate = mock(Date.class);
-    
-    
+     
     //set test values
     when(request.getParameter("username")).thenReturn("me");
     when(request.getParameter("email")).thenReturn("name@email.com");
     when(request.getParameter("comment")).thenReturn("content");
     when(mockDate.getTime()).thenReturn(30L);
-    
-
-    //create instance of datastore 
-    DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-    Entity testComment = new Entity("Comment");
-    ds.put(testComment);
 
     StringWriter stringWriter = new StringWriter();
     PrintWriter writer = new PrintWriter(stringWriter);
@@ -81,7 +98,5 @@ public final class DataServletTest{
  
     String result = stringWriter.toString();
     Assert.assertTrue( result.contains("{\"username\":\"me\",\"email\":\"name@email.com\",\"comment\":\"content\""));
-  }
-
-  
+  }  
 }
