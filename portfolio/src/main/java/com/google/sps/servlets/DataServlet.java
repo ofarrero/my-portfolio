@@ -18,6 +18,7 @@ import java.io.IOException;
 import com.google.sps.servlets.DataServlet;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -77,7 +78,8 @@ public class DataServlet extends HttpServlet {
 
     Gson gson = new Gson();
     response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(commentList));
+    String json = gson.toJson(commentList);
+    response.getWriter().println(json);
   }
 
    /**
