@@ -18,6 +18,7 @@ import java.io.IOException;
 import com.google.sps.servlets.DataServlet;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.DatastoreFailureException;
 import com.google.appengine.api.datastore.EntityNotFoundException;
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
@@ -45,12 +46,12 @@ public class QuizServlet extends HttpServlet {
     Query query = new Query("Score");
     //ensure hashmap is clear for repopulation
     scoresTable.clear();
+    try{
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      PreparedQuery results = datastore.prepare(query);
 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    PreparedQuery results = datastore.prepare(query);
-
-    //add score and its frequency to hash map
-    for (Entity entity : results.asIterable()) {
+      //add score and its frequency to hash map
+      for (Entity entity : results.asIterable()) {
       String score = (String) entity.getProperty("score");
       if (scoresTable.containsKey(score)) {
           scoresTable.put(score, scoresTable.get(score) + 1);
@@ -58,6 +59,11 @@ public class QuizServlet extends HttpServlet {
           scoresTable.put(score, 1);
       }
     }
+    }
+    catch(DatastoreFailureException e){
+      System.out.println(e.getCause());
+    }
+    
 
     //respond with map
     response.setContentType("application/json");
@@ -79,9 +85,14 @@ public class QuizServlet extends HttpServlet {
     Entity scoreEntity = new Entity("Score");
     scoreEntity.setProperty("score", score);
 
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(scoreEntity);
-
+    try{
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      datastore.put(scoreEntity);
+    }
+    catch(DatastoreFailureException e){
+      System.out.println(e.getCause());
+    }
+    
     //respond with result
     Gson gson = new Gson();
     String json = gson.toJson(score);
