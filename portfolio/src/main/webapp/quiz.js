@@ -15,6 +15,8 @@
 /**
  * Runs quiz on quiz page
  */
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
 
 const quizContainer = document.getElementById('quiz');
 const resultsContainer = document.getElementById('results');
@@ -133,12 +135,58 @@ function showResults(){
     }
   });
   // show number of correct answers out of total
-  resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-  
+  let total = numCorrect +" out of " + myQuestions.length;
+  resultsContainer.innerHTML = `${total}`;
+  sendJSON(total);
 }
 
-// display quiz when window opens
+/** 
+* Sends quiz score to servlet using ajax
+*/
+function sendJSON(total){              
+  $.ajax({
+      url: '/quiz',
+      data: {
+          score: total
+      },
+      type: 'POST'
+  });
+} 
+
+/** 
+ * Creates chart using data from quiz servlet using google chart library
+ */
+function drawChart() {
+  //Gets quiz data
+  fetch('/quiz').then(response => response.json())
+  .then((scoresTable) => {
+    //Adds data from servlet to the chart
+    const data = new google.visualization.DataTable();
+    data.addColumn('string', 'Score');
+    data.addColumn('number', 'Frequency');
+    //
+    Object.keys(scoresTable).forEach((score) => {
+      data.addRow([score, scoresTable[score]]);
+    });
+
+    //Adds basic styling to the chart
+    const options = {
+      'title': 'Quiz Results',
+      'width':600,
+      'height':500
+    };
+    
+    // creates chart instance and populates it with data and adds the styling
+    const chart = new google.visualization.ColumnChart(
+        document.getElementById('chart-container'));
+    chart.draw(data, options);
+  });
+}
+
+// display quiz and chart when window opens
 buildQuiz();
+drawChart();
 
 // show results when button clicked
 submitButton.addEventListener('click', showResults);
+
